@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { Router } from 'react-router-dom';
 
 import history from './services/history';
 import GlobalStyles from './styles/GlobalStyles';
