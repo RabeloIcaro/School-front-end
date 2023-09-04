@@ -31,5 +31,6 @@ module.exports = {
     'react/react-in-jsx-scope': 'off',
     'import/no-extraneous-dependencies': 'off',
     'default-param-last': 'off',
+    'func-names': 'off',
   },
 };
