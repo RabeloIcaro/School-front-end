@@ -2,10 +2,10 @@ import React from 'react';
 
 import { Container } from '../../styles/GlobalStyles';
 
-export default function Alunos() {
+export default function Photos() {
   return (
     <Container>
-      <h1>Alunos</h1>
+      <h1>Photos</h1>
     </Container>
   );
 }

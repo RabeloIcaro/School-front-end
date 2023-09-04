@@ -2,10 +2,10 @@ import React from 'react';
 
 import { Container } from '../../styles/GlobalStyles';
 
-export default function Fotos() {
+export default function Student() {
   return (
     <Container>
-      <h1>Fotos</h1>
+      <h1>Student</h1>
     </Container>
   );
 }
