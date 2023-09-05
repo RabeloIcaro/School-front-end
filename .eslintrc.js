@@ -34,5 +34,6 @@ module.exports = {
     'func-names': 'off',
     'no-console': 'off',
     'react/jsx-no-bind': 'off',
+    'no-unused-vars': 'off',
   },
 };
