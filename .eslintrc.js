@@ -33,5 +33,6 @@ module.exports = {
     'default-param-last': 'off',
     'func-names': 'off',
     'no-console': 'off',
+    'react/jsx-no-bind': 'off',
   },
 };
