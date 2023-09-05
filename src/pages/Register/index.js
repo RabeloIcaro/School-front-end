@@ -18,17 +18,14 @@ export default function Register() {
     let formErrors = false;
 
     if (name.length < 3 || name.length > 255) {
-      console.log(formErrors);
       formErrors = true;
       toast.error('Nome precisa ter entre 3 e 255 caracteres');
     }
     if (!isEmail(email)) {
-      console.log(formErrors);
       formErrors = true;
       toast.error('Invalid E-mail');
     }
     if (password.length < 6 || password.length > 50) {
-      console.log(formErrors);
       formErrors = true;
       toast.error('Your password must be between 6 and 50 caracters');
     }

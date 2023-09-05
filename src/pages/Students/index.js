@@ -12,7 +12,7 @@ export default function Students() {
   useEffect(() => {
     async function getData() {
       const response = await axios.get('/alunos');
-      console.log(response.data);
+
       setStudents(response.data);
     }
     getData();
