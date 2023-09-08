@@ -17,7 +17,7 @@ export default function (state = initialState, action) {
       return state;
     }
     case types.CLICKED_BUTTON_FAILURE: {
-      console.log('Deu erro');
+      console.log('Error');
       return state;
     }
 

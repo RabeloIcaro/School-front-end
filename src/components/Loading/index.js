@@ -7,7 +7,7 @@ export default function Loading({ isLoading }) {
   return (
     <Container>
       <div />
-      <span>Pending ...</span>
+      <span>Loading ...</span>
     </Container>
   );
 }
