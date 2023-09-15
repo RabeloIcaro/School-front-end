@@ -16,7 +16,7 @@ import * as actions from '../../store/modules/auth/actions';
 
 export default function Student({ match }) {
   const dispatch = useDispatch();
-  const id = get(match, 'params.id', 0);
+  const id = get(match, 'params.id');
   const [name, setName] = useState('');
   const [lastname, setLastname] = useState('');
   const [email, setEmail] = useState('');
@@ -99,6 +99,7 @@ export default function Student({ match }) {
           altura: height,
         });
         toast.success('Student has been updated');
+        setIsLoading(false);
       } else {
         const { data } = await axios.post(`/alunos/`, {
           nome: name,
@@ -122,6 +123,7 @@ export default function Student({ match }) {
       } else {
         toast.error('Unknown error');
       }
+      setIsLoading(false);
       if (status === 401) dispatch(actions.loginFailure());
     }
   };

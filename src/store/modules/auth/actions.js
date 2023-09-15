@@ -48,3 +48,42 @@ export function registerCreatedSuccess(payload) {
     payload,
   };
 }
+
+export function passwordRestoreRequest(payload) {
+  return {
+    type: types.PASSWORD_RESTORE_REQUEST,
+    payload,
+  };
+}
+export function passwordRestoreSuccess(payload) {
+  return {
+    type: types.PASSWORD_RESTORE_SUCCESS,
+    payload,
+  };
+}
+
+export function passwordRestoreFailure(payload) {
+  return {
+    type: types.PASSWORD_RESTORE_FAILURE,
+    payload,
+  };
+}
+export function passwordResetRequest(payload) {
+  return {
+    type: types.PASSWORD_RESET_REQUEST,
+    payload,
+  };
+}
+export function passwordResetSuccess(payload) {
+  return {
+    type: types.PASSWORD_RESET_SUCCESS,
+    payload,
+  };
+}
+
+export function passwordResetFailure(payload) {
+  return {
+    type: types.PASSWORD_RESET_FAILURE,
+    payload,
+  };
+}

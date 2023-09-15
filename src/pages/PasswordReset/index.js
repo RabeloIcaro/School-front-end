@@ -3,15 +3,13 @@ import { toast } from 'react-toastify';
 import { isEmail } from 'validator';
 import { useDispatch, useSelector } from 'react-redux';
 import { get } from 'lodash';
-import { Link } from 'react-router-dom';
-import { FaEdit } from 'react-icons/fa';
 
 import { Container } from '../../styles/GlobalStyles';
-import { Form, PasswordRecover } from './styled';
+import { Form, H1 } from './styled';
 import * as actions from '../../store/modules/auth/actions';
 import Loading from '../../components/Loading';
 
-export default function Login(props) {
+export default function PasswordReset(props) {
   const dispatch = useDispatch();
 
   const prevPath = get(props, 'location.state.prevPath', '/');
@@ -19,51 +17,75 @@ export default function Login(props) {
   const isLoading = useSelector((state) => state.auth.isLoading);
 
   const [email, setEmail] = React.useState('');
+  const [code, setCode] = React.useState('');
   const [password, setPassword] = React.useState('');
+  const [passwordConfirm, setPasswordConfirm] = React.useState('');
 
   function handleSubmit(e) {
     e.preventDefault();
+
     let formErrors = false;
 
     if (!isEmail(email)) {
       formErrors = true;
       toast.error('Invalid E-mail');
     }
-    if (password.length < 6 || password.length > 50) {
+    if (!code) {
       formErrors = true;
-      toast.error('Invalid password');
+      toast.error('Insert a valid code');
+    }
+    if (!password) {
+      formErrors = true;
+      toast.error('Insert your new password');
+    }
+    if (password !== passwordConfirm) {
+      formErrors = true;
+      toast.error('Confirmation failed');
     }
 
     if (formErrors) return;
 
-    dispatch(actions.loginRequest({ email, password, prevPath }));
+    dispatch(actions.passwordResetRequest({ email, prevPath, code, password }));
   }
 
   return (
     <Container>
       <Loading isLoading={isLoading} />
 
-      <h1>Login</h1>
+      <H1>
+        <h1>Password Reset</h1>
+      </H1>
 
       <Form onSubmit={handleSubmit}>
         <input
           type="text"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          placeholder="Your e-mail"
+          placeholder="E-mail"
         />
+        <p>Insert your e-mail.</p>
         <input
-          className="password"
+          type="text"
+          value={code}
+          onChange={(e) => setCode(e.target.value)}
+          placeholder="Validation Code"
+        />
+        <p>Insert the code that has been sent to your e-mail.</p>
+        <input
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          placeholder="Your password"
+          placeholder="New Password"
         />
-        <PasswordRecover to="/passwordRecovery">
-          Forgot password
-        </PasswordRecover>
-
-        <button type="submit">Log in</button>
+        <p>Insert your new password.</p>
+        <input
+          type="password"
+          value={passwordConfirm}
+          onChange={(e) => setPasswordConfirm(e.target.value)}
+          placeholder="Confirm your new Password"
+        />
+        <p>Confirm your new password.</p>
+        <button type="submit">Confirm</button>
       </Form>
     </Container>
   );

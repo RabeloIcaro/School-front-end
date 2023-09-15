@@ -22,6 +22,38 @@ function* loginRequest({ payload }) {
   }
 }
 
+function* passwordRestoreRequest({ payload }) {
+  try {
+    const response = yield call(axios.post, '/passwordRecover', payload);
+    yield put(actions.passwordRestoreSuccess({ ...response.data }));
+
+    toast.success('A code will be sent to your e-mail');
+
+    history.push('/passwordRecovery/code');
+  } catch (e) {
+    console.log(e);
+    toast.error('Invalid user and/or password');
+
+    yield put(actions.passwordRestoreFailure());
+  }
+}
+
+function* passwordResetRequest({ payload }) {
+  try {
+    const response = yield call(axios.patch, '/passwordRecover/code', payload);
+    yield put(actions.passwordResetSuccess({ ...response.data }));
+
+    toast.success('Your password has been updated');
+
+    history.push('/login');
+  } catch (e) {
+    console.log(e);
+    toast.error('Invalid e-mail and/or code');
+
+    yield put(actions.passwordResetFailure());
+  }
+}
+
 function persistRehydrate({ payload }) {
   const token = get(payload, 'auth.token', '');
   if (!token) return;
@@ -34,7 +66,6 @@ function* registerRequest({ payload }) {
 
   try {
     if (id) {
-      console.log(payload);
       yield call(axios.put, '/users', {
         email,
         nome,
@@ -77,4 +108,6 @@ export default all([
   takeLatest(types.LOGIN_REQUEST, loginRequest),
   takeLatest(types.PERSIST_REHYDRATE, persistRehydrate),
   takeLatest(types.REGISTER_REQUEST, registerRequest),
+  takeLatest(types.PASSWORD_RESTORE_REQUEST, passwordRestoreRequest),
+  takeLatest(types.PASSWORD_RESET_REQUEST, passwordResetRequest),
 ]);

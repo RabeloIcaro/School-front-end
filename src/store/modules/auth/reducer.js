@@ -51,6 +51,37 @@ export default function (state = initialState, action) {
       newState.isLoading = true;
       return newState;
     }
+    case types.PASSWORD_RESTORE_SUCCESS: {
+      const newState = { ...state };
+      newState.isLoading = false;
+      return newState;
+    }
+    case types.PASSWORD_RESTORE_REQUEST: {
+      const newState = { ...state };
+      newState.isLoading = true;
+      return newState;
+    }
+    case types.PASSWORD_RESTORE_FAILURE: {
+      const newState = { ...state };
+      newState.isLoading = false;
+      return newState;
+    }
+    case types.PASSWORD_RESET_SUCCESS: {
+      const newState = { ...state };
+      newState.isLoading = false;
+      return newState;
+    }
+    case types.PASSWORD_RESET_REQUEST: {
+      const newState = { ...state };
+      newState.isLoading = true;
+      return newState;
+    }
+    case types.PASSWORD_RESET_FAILURE: {
+      const newState = { ...state };
+      newState.isLoading = false;
+      return newState;
+    }
+
     default: {
       return state;
     }
