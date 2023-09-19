@@ -1,0 +1,9 @@
+
+version: '3.3'
+
+services:
+    school-frontend:
+        image: 'school-frontend:0.0.1'
+        container_name: 'school-frontend'
+        ports:
+            - 3000:3000
